@@ -8,7 +8,7 @@ services:
     command:
       - --storageEngine=wiredTiger
     volumes:
-      - data:/data/db
+      - db:/data/db
   web:
     build: .
     ports:
@@ -31,5 +31,4 @@ services:
 #     external: true
 
 volumes:
-  data:
-  node_modules:
+  db:
