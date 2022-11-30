@@ -19,9 +19,9 @@ npm run dev
 
 ## Building
 
-This project can only be deployed if built with `@sveltejs/@sveltejs/adapter-node`. In production, it is highly recommended to run the docker image and change the `ENVIRONEMTN` env variable to something other than `DEVELOPMENT`.
+This project has only been tested and deployed with the `@sveltejs/@sveltejs/adapter-node` adapter.
 
 ```bash
-# build and run the image
+# build and run the services
 docker-compose up --build
 ```
