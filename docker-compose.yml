@@ -1,10 +1,24 @@
 version: '3.8'
 
 services:
+  mongo:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    command:
+      - --storageEngine=wiredTiger
+    volumes:
+      - data:/data/db
   web:
     build: .
     ports:
-      - '3000:3000'
+      - '5173:5173'
+    environment:
+      - PAYLOAD_SECRET=secret
+      - PAYLOAD_MONGODB_URI=mongodb://mongo:27017/payload
+      - VITE_TRPC=http://localhost:5173/trpc
+    depends_on:
+      - mongo
     # networks:
     #   - traefik
     # labels:
@@ -15,3 +29,7 @@ services:
 # networks:
 #   traefik:
 #     external: true
+
+volumes:
+  data:
+  node_modules:

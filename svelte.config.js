@@ -14,10 +14,15 @@ const config = {
 	}),
 
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({
+			out: 'dist'
+		}),
 		alias: {
 			$i18n: path.join('src', 'i18n'),
-			$scss: path.join('src', 'lib', 'global', 'scss')
+			$scss: path.join('src', 'lib', 'global', 'scss'),
+			$server: path.join('src', 'lib', 'server'),
+			$payload: path.join('src', 'lib', 'server', 'payload'),
+			$global: path.join('src', 'lib', 'global')
 		}
 	}
 };

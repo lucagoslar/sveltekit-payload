@@ -42,7 +42,12 @@ const config: UserConfig = {
 			resolve: {
 				alias: {
 					$i18n: fileURLToPath(new URL(path.join('src', 'i18n'), import.meta.url)),
-					$scss: fileURLToPath(new URL(path.join('src', 'lib', 'global', 'scss'), import.meta.url))
+					$scss: fileURLToPath(new URL(path.join('src', 'lib', 'global', 'scss'), import.meta.url)),
+					$server: fileURLToPath(new URL(path.join('src', 'lib', 'server'), import.meta.url)),
+					$payload: fileURLToPath(
+						new URL(path.join('src', 'lib', 'server', 'payload'), import.meta.url)
+					),
+					$global: fileURLToPath(new URL(path.join('src', 'lib', 'global'), import.meta.url))
 				}
 			}
 		}

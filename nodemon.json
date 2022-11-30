@@ -1,0 +1,6 @@
+{
+	"ext": "*",
+	"exec": "PAYLOAD_CONFIG_PATH=src/lib/server/payload/payload.config.ts concurrently \"npx payload generate:types\" \"node src/server.js\" \"typesafe-i18n --no-watch\"",
+	"ignore": ["./node_modules", "**/payload-types.ts", "./src/i18n/*.ts"],
+	"watch": ["./src", "./.env"]
+}
