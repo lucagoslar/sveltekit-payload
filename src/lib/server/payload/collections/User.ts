@@ -6,6 +6,9 @@ const Users: CollectionConfig = {
 	admin: {
 		useAsTitle: 'email'
 	},
+	access: {
+		read: () => true
+	},
 	fields: []
 };
 
