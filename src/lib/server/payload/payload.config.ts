@@ -3,9 +3,9 @@ import path from 'path';
 import User from './collections/User';
 
 export default buildConfig({
-	serverURL: 'http://localhost:5173',
+	serverURL: process.env.SERVER_URL,
 	localization: {
-		locales: ['de', 'en', 'uk', 'es', 'fr', 'it'],
+		locales: ['de', 'en'],
 		defaultLocale: 'de',
 		fallback: true
 	},
