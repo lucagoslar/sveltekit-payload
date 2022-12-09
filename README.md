@@ -1,4 +1,4 @@
-# sveltekit-fullstack
+# sveltekit-payload
 
 Everything you need to build a Svelte project with [Payload](https://payloadcms.com), [Histoire](https://histoire.dev/), [typesafe-i18n](https://github.com/ivanhofer/typesafe-i18n), [Prisma](https://prisma.io/) and [trpc](https://trpc.io/).
 
