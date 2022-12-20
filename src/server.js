@@ -35,8 +35,10 @@ async function createServer() {
 
 	app.use(kit);
 
-	app.listen(5173, function () {
-		console.log('Server listening on 5173.');
+	const port = process.env.NODE_ENV !== 'production' ? 5173 : 3000;
+
+	app.listen(port, function () {
+		console.log(`Server listening on ${port}.`);
 	});
 }
 

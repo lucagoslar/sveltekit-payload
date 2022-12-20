@@ -1,8 +1,14 @@
-import { sequence } from '@sveltejs/kit/hooks';
-import { isLocale } from '$i18n/i18n-util';
-import type { Handle } from '@sveltejs/kit';
 import { createTRPCHandle } from 'trpc-sveltekit';
-import { router } from '$lib/server/trpc/server';
+import { sequence } from '@sveltejs/kit/hooks';
+import type { Handle } from '@sveltejs/kit';
+import type { ValidRoute } from 'trpc-sveltekit/dist/ValidRoute';
+
+import { env } from '$env/dynamic/public';
+
+import { createContext } from '$lib/server/trpc/createContext';
+import { appRouter } from '$lib/server/trpc/_app';
+import { isLocale } from '$i18n/i18n-util';
+import { prisma } from '$lib/server/prisma';
 
 const language: Handle = async ({ event, resolve }) => {
 	let [, lang] = event.url.pathname.split('/');
@@ -18,9 +24,17 @@ const language: Handle = async ({ event, resolve }) => {
 };
 
 const trpc: Handle = createTRPCHandle({
-	url: '/trpc',
-	router,
-	createContext: async () => ({})
+	url: env.PUBLIC_TRPC_SLUG as ValidRoute<typeof env.PUBLIC_TRPC_SLUG>,
+	createContext,
+	router: appRouter
 });
 
 export const handle: Handle = sequence(language, trpc);
+
+async function seed() {
+	if (!((await prisma.user.count()) > 0)) {
+		await prisma.user.create({ data: { email: 'mail@example.com' } });
+	}
+}
+
+seed();

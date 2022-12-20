@@ -12,14 +12,9 @@ services:
   web:
     build: .
     ports:
-      - '5173:5173'
-    environment:
-      - SERVER_URL=http://localhost:5173
-      - PAYLOAD_SECRET=secret
-      - PAYLOAD_MONGODB_URI=mongodb://mongo:27017/payload
-      - VITE_TRPC=http://localhost:5173/trpc
-    depends_on:
-      - mongo
+      - '3000:3000'
+    env_file:
+      - .env.production
     # networks:
     #   - traefik
     # labels:
