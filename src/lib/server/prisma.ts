@@ -1,9 +1,6 @@
 import { env } from '$env/dynamic/private';
 import type Prisma from '@prisma/client';
-
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-const { PrismaClient } = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
 
 const options: Prisma.Prisma.PrismaClientOptions = {
 	datasources: {
