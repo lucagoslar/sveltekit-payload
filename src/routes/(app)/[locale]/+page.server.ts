@@ -6,10 +6,10 @@ import type { PageServerLoad } from './$types';
 import { client } from '$scripts/trcp';
 import type { Landingpage } from '$lib/server/payload/payload-types';
 
-export const load: PageServerLoad = async (req) => {
+export const load: PageServerLoad = async (event) => {
 	const parameters = qs.stringify(
 		{
-			locale: req.params.locale,
+			locale: event.params.locale,
 			'fallback-locale': 'de',
 			depth: 59
 		},
@@ -17,13 +17,13 @@ export const load: PageServerLoad = async (req) => {
 	);
 
 	const page = (await (
-		await fetch(env.PUBLIC_BASE_URL + '/api/globals/landingpage' + parameters, {
+		await event.fetch(env.PUBLIC_BASE_URL + '/api/globals/landingpage' + parameters, {
 			method: 'GET'
 		})
 	).json()) as PayloadType<Landingpage>;
 
 	return {
-		userCount: await client.users.count.query(),
+		userCount: await client(event).users.count.query(),
 		page: page
 	};
 };

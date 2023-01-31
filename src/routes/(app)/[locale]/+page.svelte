@@ -11,7 +11,7 @@
 	export let data: PageData;
 
 	onMount(async () => {
-		console.log(await client.ping.query());
+		console.log(await client().ping.query());
 	});
 </script>
 
